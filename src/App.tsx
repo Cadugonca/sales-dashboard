@@ -3,11 +3,11 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<LOGIN />} />
-        <Route path="/cadastro" element={<CADASTRO />} />
-        <Route path="/home" element={<HOME />} />
-        <Route path="/perfil" element={<PERFIL />} />
-        <Route path="/leads" element={<LEADS />} />
+        <Route path="/" element={<>LOGIN</>} />
+        <Route path="/cadastro" element={<>cadastro</>} />
+        <Route path="/home" element={<>home</>} />
+        <Route path="/perfil" element={<>perfil</>} />
+        <Route path="/leads" element={<>leads</>} />
       </Routes>
     </Router>
   )
