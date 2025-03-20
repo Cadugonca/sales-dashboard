@@ -1,25 +1,28 @@
-import styled from 'styled-components'
-
-const RegistrationArea = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #6658dd;
-`
-
-const RegistrationImage = styled.div`
-  background-image: url(/login-image.svg);
-  background-size: cover;
-  width: 50vw;
-  height: 100vh;
-`
+import { BannerImage } from '@/components'
+import { Box, Container, Grid2 } from '@mui/material'
 
 function Registration() {
   return (
     <>
-      <RegistrationArea> Registration </RegistrationArea>
-      <RegistrationImage />
+      <Box>
+        <Grid2 container>
+          <Grid2
+            size={{ xs: 12, sm: 6 }}
+            sx={{ alignItems: 'center', display: 'flex', height: '100vh' }}
+          >
+            <Container maxWidth="sm">
+              <h1>Registration</h1>
+              <p>Register to access the app</p>
+            </Container>
+          </Grid2>
+          <Grid2
+            size={{ xs: 12, sm: 6 }}
+            sx={{ display: { xs: 'none', sm: 'block' } }}
+          >
+            <BannerImage />
+          </Grid2>
+        </Grid2>
+      </Box>
     </>
   )
 }
