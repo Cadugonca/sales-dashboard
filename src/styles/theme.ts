@@ -4,7 +4,7 @@ export const lightTheme: Theme = {
   appBackground: '#FFF ',
   appColor: '#000 ',
   appDefaultStroke: '#E0E0E0 ',
-  AppLogo: 'dnc-logo-black.svg ',
+  appLogo: 'dnc-logo2.svg ',
   appSkeletonFrom: '#EEE ',
   appSkeletonTo: '#CCC ',
 
@@ -45,7 +45,7 @@ export const darktheme: Theme = {
   appBackground: '#060B26 ',
   appColor: '#FFF ',
   appDefaultStroke: '#21497D ',
-  AppLogo: 'dnc-logo 2.svg ',
+  appLogo: 'logo-dnc-black.svg ',
   appSkeletonFrom: '#060B26 ',
   appSkeletonTo: '#21497D ',
 

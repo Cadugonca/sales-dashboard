@@ -2,7 +2,7 @@ export interface Theme {
   appBackground: string
   appColor: string
   appDefaultStroke: string
-  AppLogo: string
+  appLogo: string
   appSkeletonFrom: string
   appSkeletonTo: string
   buttons: {
