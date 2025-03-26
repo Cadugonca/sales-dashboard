@@ -1,4 +1,3 @@
-import { Logo } from './Logo'
 import { Avatar, Box } from '@mui/material'
 import { pxToRem } from '@/utils'
 import { AvatarsListProps } from '@/types'
