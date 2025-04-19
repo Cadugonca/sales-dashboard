@@ -110,7 +110,7 @@ function Login() {
                     children: loading ? 'Carregando...' : 'Entrar',
                   },
                 ]}
-                message={handleMessage}
+                message={handleMessage()}
               />
             </Container>
           </Grid2>
