@@ -20,13 +20,7 @@ import { useFormValidation } from '@/hooks/useFormValidation'
 import { usePost } from '@/hooks/useAxios'
 
 // Types
-import {
-  InputProps,
-  MessaProps,
-  LoginData,
-  LoginPostData,
-  DecodedJwt,
-} from '@/types'
+import { LoginData, LoginPostData, DecodedJwt } from '@/types'
 
 function Login() {
   const navigate = useNavigate()
