@@ -5,10 +5,81 @@ import {
   StyledP,
   Logo,
 } from '@/components'
-import { pxToRem } from '@/utils'
 import { Box, Container, Grid2 } from '@mui/material'
+import { ChangeEvent, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
+import { jwtDecode } from 'jwt-decode'
+import Cookies from 'js-cookie'
+
+// utils
+import { pxToRem } from '@/utils/pxToRem'
+import { jwtEDC } from '@/utils/jwtEDC'
+
+// Hooks
+import { useFormValidation } from '@/hooks/useFormValidation'
+import { usePost } from '@/hooks/useAxios'
+
+// Types
+import {
+  InputProps,
+  MessaProps,
+  LoginData,
+  LoginPostData,
+  DecodedJwt,
+} from '@/types'
 
 function Login() {
+  const navigate = useNavigate()
+
+  const inputs = [
+    { type: 'email', placeholder: 'Email' },
+    { type: 'password', placeholder: 'Senha' },
+  ]
+
+  const { data, loading, error, postData } = usePost<LoginData, LoginPostData>(
+    'login'
+  )
+  const { formValues, formValid, handleChange } = useFormValidation(inputs)
+  const handleMessage = () => {
+    if (!error) {
+      return {
+        msg: '',
+        type: 'sucess',
+      }
+    }
+    switch (error) {
+      case 401:
+        return {
+          msg: 'Email e/ou senha inválidos',
+          type: 'error',
+        }
+      default:
+        return {
+          msg: 'Erro ao conectar com o servidor, fale com o suporte',
+          type: 'error',
+        }
+    }
+  }
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault()
+    await postData({
+      email: String(formValues[0]),
+      password: String(formValues[1]),
+    })
+  }
+
+  useEffect(() => {
+    if (data?.jwt_token) {
+      const decoded: DecodedJwt = jwtDecode(data?.jwt_token)
+      Cookies.set('Authorization', data?.jwt_token, {
+        expires: jwtEDC(decoded.exp),
+        secure: true,
+      })
+    }
+    if (Cookies.get('Authorization')) navigate('/home')
+  }, [data, navigate])
+
   return (
     <>
       <Box>
@@ -28,21 +99,24 @@ function Login() {
               </Box>
 
               <FormComponent
-                inputs={[
-                  { type: 'email', placeholder: 'Email' },
-                  { type: 'password', placeholder: 'Senha' },
-                ]}
+                inputs={inputs.map((input, index) => ({
+                  type: input.type,
+                  placeholder: input.placeholder,
+                  value: formValues[index] || '',
+                  onChange: (e: ChangeEvent<HTMLInputElement>) => {
+                    handleChange(index, (e.target as HTMLInputElement).value)
+                  },
+                }))}
                 buttons={[
                   {
+                    disabled: loading || !formValid,
+                    onClick: handleSubmit,
                     className: 'primary',
                     type: 'submit',
-                    children: 'Login',
+                    children: loading ? 'Carregando...' : 'Entrar',
                   },
                 ]}
-                message={{
-                  msg: 'Sucesso',
-                  type: 'success',
-                }}
+                message={handleMessage}
               />
             </Container>
           </Grid2>
