@@ -5,7 +5,8 @@ import {
   StyledP,
   Logo,
 } from '@/components'
-import { Box, Container, Grid2 } from '@mui/material'
+import { Box, Container } from '@mui/material'
+import Grid from '@mui/material/Grid'
 import { ChangeEvent, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { jwtDecode } from 'jwt-decode'
@@ -77,9 +78,11 @@ function Login() {
   return (
     <>
       <Box>
-        <Grid2 container>
-          <Grid2
-            size={{ xs: 12, sm: 6 }}
+        <Grid container>
+          <Grid
+            item
+            xs={12}
+            sm={6}
             sx={{ alignItems: 'center', display: 'flex', height: '100vh' }}
           >
             <Container maxWidth="sm">
@@ -113,14 +116,16 @@ function Login() {
                 message={handleMessage}
               />
             </Container>
-          </Grid2>
-          <Grid2
-            size={{ xs: 12, sm: 6 }}
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            sm={6}
             sx={{ display: { xs: 'none', sm: 'block' } }}
           >
             <BannerImage />
-          </Grid2>
-        </Grid2>
+          </Grid>
+        </Grid>
       </Box>
     </>
   )

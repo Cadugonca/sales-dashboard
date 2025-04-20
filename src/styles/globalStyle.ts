@@ -13,4 +13,13 @@ export const GlobalStyle = createGlobalStyle<{ theme?: DefaultTheme }>`
     h1, h2, p, ul, li, figure {
       margin: 0;
         padding: 0;
+}
+
+.mb-1 {
+  margin-bottom: 1rem;
+}
+.mb-2 {
+  margin-bottom: 2rem;
+}
+
     `
