@@ -57,6 +57,7 @@ function CustomChart(props: CustomChartProps) {
         },
       },
       y: {
+        beginAtZero: true,
         grid: {
           color: theme.appDefaultStroke,
         },
@@ -76,7 +77,7 @@ function CustomChart(props: CustomChartProps) {
   }
 
   return (
-    <div>
+    <div style={{ width: '100%' }}>
       {type === 'bar' && <Bar data={chartData} options={options} />}
       {type === 'line' && <Line data={chartData} options={options} />}
     </div>
