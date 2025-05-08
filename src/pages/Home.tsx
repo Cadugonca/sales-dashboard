@@ -19,7 +19,7 @@ import { Container, Grid } from '@mui/material'
 
 // UTILS
 import { currencyConverter, highConverter } from '@/utils'
-import AvatarList from '@/components/AvatarList'
+
 
 function Home() {
   const {
