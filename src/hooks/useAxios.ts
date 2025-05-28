@@ -67,3 +67,67 @@ export const useGet = <T>(endpoint: string, config?: AxiosRequestConfig) => {
 
   return { data, loading, error }
 }
+
+export const usePut = <T>(endpoint: string) => {
+  const [data, setData] = useState<T | null>(null)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<number | null>(null)
+
+  const putData = async (putData: T, config?: AxiosRequestConfig) => {
+    setData(null)
+    setError(null)
+    setLoading(true)
+    try {
+      const response = await axiosInstance({
+        method: 'PUT',
+        url: endpoint,
+        data: putData,
+        headers: {
+          Authorization: `Bearer ${Cookies.get('Authorization')}`,
+          'Content-Type': 'application/json',
+          ...config?.headers,
+        },
+      })
+      setData(response.data)
+    } catch (err: any) {
+      setError(err.response?.status || 500)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return { data, loading, error, putData }
+}
+
+export const useDelete = <T>(endpoint: string) => {
+  const [data, setData] = useState<T | null>(null)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState<number | null>(null)
+
+  const deleteData = async (config?: AxiosRequestConfig) => {
+    setData(null)
+    setError(null)
+    setLoading(true)
+    try {
+      const response = await axiosInstance({
+        method: 'DELETE',
+        url: endpoint,
+        headers: {
+          Authorization: `Bearer ${Cookies.get('Authorization')}`,
+       
+          ...config?.headers,
+        },
+        ...config,
+      })
+      setData(response.data)
+    } catch (err: any) {
+      setError(err.response?.status || 500)
+    } finally {
+      setLoading(false)
+    }
+  }
+
+  return { data, loading, error, deleteData }
+}
+
+

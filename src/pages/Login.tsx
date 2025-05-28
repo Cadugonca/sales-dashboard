@@ -6,6 +6,7 @@ import {
   Logo,
 } from '@/components'
 import { Box, Container } from '@mui/material'
+
 import Grid from '@mui/material/Grid'
 import { ChangeEvent, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
@@ -21,7 +22,7 @@ import { useFormValidation } from '@/hooks/useFormValidation'
 import { usePost } from '@/hooks/useAxios'
 
 // Types
-import { LoginData, LoginPostData, DecodedJwt } from '@/types'
+import { LoginData, LoginPostData, DecodedJwt, MessageProps } from '@/types'
 
 function Login() {
   const navigate = useNavigate()
@@ -35,11 +36,11 @@ function Login() {
     'login'
   )
   const { formValues, formValid, handleChange } = useFormValidation(inputs)
-  const handleMessage = () => {
+  const handleMessage = (): MessageProps => {
     if (!error) {
       return {
         msg: '',
-        type: 'sucess',
+        type: 'success',
       }
     }
     switch (error) {
@@ -113,7 +114,7 @@ function Login() {
                     children: loading ? 'Carregando...' : 'Entrar',
                   },
                 ]}
-                message={handleMessage}
+                message={handleMessage()}
               />
             </Container>
           </Grid>

@@ -1,7 +1,10 @@
-export type InputProps = React.InputHTMLAttributes<HTMLInputElement>
-type ButtonProps = React.ButtonHTMLAttributes<HTMLButtonElement>
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label?: string
+}
 
-export type MessaProps = {
+export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+
+export type MessageProps = {
   msg: string
   type: 'error' | 'success'
 }
