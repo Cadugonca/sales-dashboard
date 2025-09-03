@@ -12,8 +12,8 @@ function AvatarList(props: AvatarsListProps) {
             display: 'flex',
             alignItems: 'center',
             padding: `${pxToRem(12)} 0`,
-            key: { index },
           }}
+          key={index}
         >
           <Box>
             <Avatar
